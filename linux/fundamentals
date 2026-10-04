@@ -1,0 +1,44 @@
+# Basics
+1. "Everything in linux is a process"
+-It starts with PID 1 (systemd)
+   where, 'd' stands for daemon(background)
+
+2. "Everything in Linux is a file/directory."
+3. "Everything in Linux starts from '/'or root directory."
+
+# basic commands  
+1. whoami- username
+2. pwd - present working directory
+3. cd- change directory
+4. ls- list files & directories
+   ls -l - to see details of files(permisssions,size, users, groups)
+5. cat- open file content 
+6. echo- to print something
+7. touch- to make file
+8. mkdir- to make a directory
+9. which- location of file
+10. df -h - disk status
+11. free -m - RAM status
+12. head- to see the top lines
+13. tail- to see the bottom lines
+14. vim - text editor
+15. htop/top- real time system resource usage 
+16. nohup- to run a script in the background
+17. wc -l - count how many lines are in a file
+
+## User management (add sudo before every command of user management)
+1. su- to switch users
+2. sudo- to use root user permissions
+3. etc/sudoers- file that contains superusers.
+4. useradd - to add a user, but neither directory of user will be generated in home folder nor its password be set.
+5. useradd -m - to add a user as well as create a directory for the user, but we have to set the password manually
+6. sudo password- to set the password for the user
+*7. adduser- to add a user, create a directory, set password
+8. userdel- to remove group
+9. cat /etc/passwd- to see all users
+10. cat /etc/group- to see all groups
+11. groupadd- to make a group
+12. gpasswd- to add a user
+            >> adding 1 user: [sudo gpasswd -a username groupname]
+            >> adding multiple users: [sudo gpasswd -m user1,user2..... groupname] 
+13. groupdel- to delete a group            

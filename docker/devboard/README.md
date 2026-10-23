@@ -7,24 +7,24 @@ A production-style containerized deployment of the DevBoard task management appl
 ## 📐 System Architecture
 
 The application runs as three decoupled services communicating across an isolated user-defined Docker bridge network:
-[ Client Browser ]
-│
-(Port 8082)
-▼
+                            [ Client Browser ]
+                            │
+                            (Port 8082)
+                            ▼
 ┌────────────────────────────────────────────────────────┐
 │  frontend (Vite / React)                               │
 │  - Container Port: 4173 -> Host Port: 8082             │
 │  - Internal Reverse Proxy: /api/* ──┐                  │
 └─────────────────────────────────────┼──────────────────┘
-│ (Docker Bridge Network)
-▼
+                                      │ (Docker Bridge Network)
+                                      ▼
 ┌────────────────────────────────────────────────────────┐
 │  backend (Go / Gin REST API)                           │
 │  - Container Port: 8080 -> Host Port: 8080             │
 │  - Endpoints: /projects, /tasks, /search               │
 └─────────────────────────────────────┬──────────────────┘
-│
-▼
+                                      │
+                                      ▼
 ┌────────────────────────────────────────────────────────┐
 │  postgres-db (PostgreSQL 16 Alpine)                    │
 │  - Port 5432                                           │

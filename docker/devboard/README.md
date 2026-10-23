@@ -1,13 +1,12 @@
+> **Project Scope & Attribution:**  
+> The application source code (React frontend and Go backend) is from the open-source project by [Shubham Londhe](https://github.com/LondheShubham153/devboard).  
+> **My DevOps Contribution:** I architected and implemented the end-to-end containerization, multi-stage Dockerfiles, network bridge communication, internal reverse proxy routing, Docker Compose orchestration, and Docker Hub distribution from scratch.
+
 # 🚀 DevBoard — 3-Tier Multi-Container Full-Stack Architecture
 
 A production-style containerized deployment of the **DevBoard** task management application featuring a **React (Vite)** frontend, a **Go (Gin)** REST API, and a **PostgreSQL 16** database. 
 
 Orchestrated using Docker and Docker Compose on an **AWS EC2 (Ubuntu 24.04 LTS)** host.
----
-> **Project Scope & Attribution:**  
-> The application source code (React frontend and Go backend) is from the open-source project by [Shubham Londhe](https://github.com/LondheShubham153/devboard).  
-> **My DevOps Contribution:** I architected and implemented the end-to-end containerization, multi-stage Dockerfiles, network bridge communication, internal reverse proxy routing, Docker Compose orchestration, and Docker Hub distribution from scratch. 
-
 ---
 
 ## 📑 Table of Contents

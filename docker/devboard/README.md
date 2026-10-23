@@ -1,35 +1,50 @@
-# DevBoard — 3-Tier Multi-Container Architecture Deployment
+# 🚀 DevBoard — 3-Tier Multi-Container Full-Stack Architecture
 
-A production-style containerized deployment of the DevBoard task management application (React frontend, Go REST API, and PostgreSQL database) orchestrated using Docker and Docker Compose on an AWS EC2 (Ubuntu 24.04) host.
+A production-style containerized deployment of the **DevBoard** task management application featuring a **React (Vite)** frontend, a **Go (Gin)** REST API, and a **PostgreSQL 16** database. 
+
+Orchestrated using Docker and Docker Compose on an **AWS EC2 (Ubuntu 24.04 LTS)** host.
 
 ---
 
-## 📐 System Architecture
+## 📑 Table of Contents
+- [Architecture Overview](#-architecture-overview)
+- [Tech Stack & Specifications](#-tech-stack--specifications)
+- [Phase 1: Multi-Stage Dockerfiles & Manual Execution](#-phase-1-multi-stage-dockerfiles--manual-execution)
+- [Phase 2: Diagnostics & Reverse-Proxy Troubleshooting](#-phase-2-diagnostics--reverse-proxy-troubleshooting)
+- [Phase 3: Image Registry & Docker Hub Publishing](#-phase-3-image-registry--docker-hub-publishing)
+- [Phase 4: Automated Orchestration via Docker Compose](#-phase-4-automated-orchestration-via-docker-compose)
+- [Quick Start Guide](#-quick-start-guide)
 
-The application runs as three decoupled services communicating across an isolated user-defined Docker bridge network:
-                            [ Client Browser ]
-                            │
-                            (Port 8082)
-                            ▼
+---
+
+## 📐 Architecture Overview
+
+All three decoupled microservices reside on an isolated, user-defined Docker bridge network (`devboard_default`), using Docker's internal DNS engine for service discovery.
+
+```text
+[ Client Browser ]
+        │
+   (Port 8082)
+        ▼
 ┌────────────────────────────────────────────────────────┐
 │  frontend (Vite / React)                               │
-│  - Container Port: 4173 -> Host Port: 8082             │
+│  - Container Port: 4173 ──► Host Port: 8082            │
 │  - Internal Reverse Proxy: /api/* ──┐                  │
 └─────────────────────────────────────┼──────────────────┘
-                                      │ (Docker Bridge Network)
+                                      │ (Docker Bridge Network: devboard_default)
                                       ▼
 ┌────────────────────────────────────────────────────────┐
 │  backend (Go / Gin REST API)                           │
-│  - Container Port: 8080 -> Host Port: 8080             │
+│  - Container Port: 8080 ──► Host Port: 8080            │
 │  - Endpoints: /projects, /tasks, /search               │
 └─────────────────────────────────────┬──────────────────┘
                                       │
                                       ▼
 ┌────────────────────────────────────────────────────────┐
 │  postgres-db (PostgreSQL 16 Alpine)                    │
-│  - Port 5432                                           │
-│  - Health-checked via pg_isready                       │
-│  - Persistent data volume: pgdata                      │
+│  - Port: 5432                                          │
+│  - Healthcheck via: pg_isready                         │
+│  - Persistent Volume: pgdata                           │
 └────────────────────────────────────────────────────────┘
 ## Tech Stack & Tooling
 

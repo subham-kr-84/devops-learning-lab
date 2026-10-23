@@ -46,6 +46,7 @@ All three decoupled microservices reside on an isolated, user-defined Docker bri
 │  - Healthcheck via: pg_isready                         │
 │  - Persistent Volume: pgdata                           │
 └────────────────────────────────────────────────────────┘
+```
 ## Tech Stack & Tooling
 
 * **Cloud Infrastructure:** AWS EC2 (Ubuntu 24.04 LTS)
